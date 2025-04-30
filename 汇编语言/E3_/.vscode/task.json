@@ -1,0 +1,35 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build ASM",
+      "type": "shell",
+      "command": "${command:masm-tasm.build}",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run ASM",
+      "type": "shell",
+      "command": "${command:masm-tasm.run}",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Build and Run ASM",
+      "type": "shell",
+      "command": "${command:masm-tasm.buildAndRun}",
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "problemMatcher": []
+    }
+  ]
+}

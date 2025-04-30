@@ -1,0 +1,32 @@
+{
+  "masm-tasm.dosbox.path": "C:\\Program Files (x86)\\DOSBox-0.74-3\\DOSBox.exe",
+  "masm-tasm.assembler": "MASM",
+  "masm-tasm.masm.path": "C:\\Program Files (x86)\\MASM\\bin\\masm.exe",
+  "masm-tasm.link.path": "C:\\Program Files (x86)\\MASM\\bin\\link.exe",
+  "masm-tasm.includePaths": [
+    "C:\\Program Files (x86)\\MASM\\include"
+  ],
+  "masm-tasm.libPaths": [
+    "C:\\Program Files (x86)\\MASM\\lib"
+  ],
+  "masm-tasm.dosbox.cyclesType": "auto",
+  "masm-tasm.dosbox.cycles": "max",
+  "masm-tasm.dosbox.startupCommands": [
+    "mount c \"${workspaceRoot}\"",
+    "c:",
+    "cd ${fileWorkspaceFolder}"
+  ],
+  "masm-tasm.dosbox.closeDosboxAfterExit": false,
+  "masm-tasm.masm.buildOptions": {
+    "MZ": false,
+    "ZI": true,
+    "nologo": true
+  },
+  "masm-tasm.link.buildOptions": {
+    "nologo": true
+  },
+  "masm-tasm.autoBuild": true,
+  "masm-tasm.autoRun": false,
+  "masm-tasm.tempFiles.removeOnSuccess": false,
+  "masm-tasm.files.encoding": "gbk"
+}
