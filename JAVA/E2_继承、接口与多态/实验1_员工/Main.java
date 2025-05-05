@@ -5,7 +5,7 @@ import people.Employee;
 
 public class Main {
     public static void main(String[] args){
-        Employee employee = new Employee("张三","男",18,13000000);
+        Employee employee = new Employee("谭棵","男",20,202306630);
         System.out.println("这是一名员工："); 
         System.out.println("姓名："+employee.getName()); 
         System.out.println("性别："+employee.getGender()); 
