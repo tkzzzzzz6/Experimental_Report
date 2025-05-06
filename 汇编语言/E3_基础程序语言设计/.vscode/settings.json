@@ -1,32 +1,71 @@
 {
-  "masm-tasm.dosbox.path": "C:\\Program Files (x86)\\DOSBox-0.74-3\\DOSBox.exe",
-  "masm-tasm.assembler": "MASM",
-  "masm-tasm.masm.path": "C:\\Program Files (x86)\\MASM\\bin\\masm.exe",
-  "masm-tasm.link.path": "C:\\Program Files (x86)\\MASM\\bin\\link.exe",
-  "masm-tasm.includePaths": [
-    "C:\\Program Files (x86)\\MASM\\include"
-  ],
-  "masm-tasm.libPaths": [
-    "C:\\Program Files (x86)\\MASM\\lib"
-  ],
-  "masm-tasm.dosbox.cyclesType": "auto",
-  "masm-tasm.dosbox.cycles": "max",
-  "masm-tasm.dosbox.startupCommands": [
-    "mount c \"${workspaceRoot}\"",
-    "c:",
-    "cd ${fileWorkspaceFolder}"
-  ],
-  "masm-tasm.dosbox.closeDosboxAfterExit": false,
-  "masm-tasm.masm.buildOptions": {
-    "MZ": false,
-    "ZI": true,
-    "nologo": true
-  },
-  "masm-tasm.link.buildOptions": {
-    "nologo": true
-  },
-  "masm-tasm.autoBuild": true,
-  "masm-tasm.autoRun": false,
-  "masm-tasm.tempFiles.removeOnSuccess": false,
-  "masm-tasm.files.encoding": "gbk"
+    "files.associations": {
+        "*.asm": "assembly",
+        "xstring": "cpp",
+        "system_error": "cpp",
+        "type_traits": "cpp",
+        "xlocnum": "cpp",
+        "xtr1common": "cpp"
+    },
+    "masmtasm.ASM.emulator": "msdos player",  
+    "masmtasm.dosbox.run": "exit",
+    "masmtasm.ASM.assembler": "MASM-v5.00",
+    "masmtasm.ASM.actions": {
+        "TASM": {
+            "baseBundle": "<built-in>/TASM.jsdos",
+            "before": [
+                "set PATH=C:\\TASM"
+            ],
+            "run": [
+                "TASM ${file}",
+                "TLINK ${filename}",
+                ">${filename}"
+            ],
+            "debug": [
+                "TASM /zi ${file}",
+                "TLINK /v/3 ${filename}.obj",
+                "TD ${filename}.exe"
+            ]
+        },
+        "MASM-v6.11": {
+            "baseBundle": "<built-in>/MASM-v6.11.jsdos",
+            "before": [
+                "set PATH=C:\\MASM"
+            ],
+            "run": [
+                "masm ${file};",
+                "link ${filename};",
+                ">${filename}"
+            ],
+            "debug": [
+                "masm ${file};",
+                "link ${filename}.OBJ;",
+                ">debug ${filename}.exe"
+            ]
+        },
+        "MASM-v5.00": {
+            "baseBundle": "<built-in>/MASM-v5.00.jsdos",
+            "before": [
+                "set PATH=C:\\MASM"
+            ],
+            "run": [
+                "masm ${file};",
+                "link ${filename};",
+                ">${filename}"
+            ],
+            "debug": [
+                "masm ${file};",
+                "link ${filename}.OBJ;",
+                ">debug ${filename}.exe"
+            ],
+            "support": [
+                "jsdos",
+                "dosbox",
+                "dosboxX",
+                "msdos player"
+            ]
+        }
+    }
+    
 }
+
