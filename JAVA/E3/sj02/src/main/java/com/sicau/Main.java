@@ -1,4 +1,4 @@
-package com.sicau;
+package JAVA.E3.sj02.src.main.java.com.sicau;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {

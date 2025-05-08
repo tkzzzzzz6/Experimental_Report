@@ -1,4 +1,4 @@
-package com.sicau;
+package JAVA.E3.sj02.src.main.java.com.sicau;
 // 这段代码外层做防御,内层不做防御
 
 public class Week {
