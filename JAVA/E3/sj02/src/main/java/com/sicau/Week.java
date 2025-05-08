@@ -1,22 +1,32 @@
-package JAVA.E3.sj02.src.main.java.com.sicau;
+package com.sicau;
 // 这段代码外层做防御,内层不做防御
 
 public class Week {
-    private final String data[] = { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日" };
+    // private final String data[] = { "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日" };
+
+    // public String getDays(int index) {
+    //     return data[index];
+    // }
+
+    // public String toString() {
+    //     return data[index];
+    // }
+
+    // 采用枚举
+    private enum Days {
+        星期一, 星期二, 星期三, 星期四, 星期五, 星期六, 星期日
+    }
 
     public String getDays(int index) {
-        return data[index];
+        return Days.values()[index].toString();
     }
 
     private int index;
 
-    // public Week(int index) {
-    //     this.index = index;
-    // }
-
     public String toString() {
-        return data[index];
+        return Days.values()[index].toString();
     }
+
 }
 // 外层做防御,内层不做
 // 一般web开发常用
