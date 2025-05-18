@@ -2,6 +2,13 @@
   "version": "0.2.0",
   "configurations": [
     {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.example.Main",
+      "projectName": "idea_example"
+    },
+    {
       "name": "C/C++: g++.exe 生成和调试活动文件",
       "type": "cppdbg",
       "request": "launch",
