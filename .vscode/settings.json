@@ -5,7 +5,10 @@
     "system_error": "cpp",
     "type_traits": "cpp",
     "xlocnum": "cpp",
-    "xtr1common": "cpp"
+    "xtr1common": "cpp",
+    "ostream": "cpp",
+    "text_encoding": "cpp",
+    "typeinfo": "cpp"
   },
   "masmtasm.ASM.emulator": "msdos player",
   "masmtasm.dosbox.run": "exit",
@@ -122,5 +125,6 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
-  "C_Cpp_Runner.msvcSecureNoWarnings": false
+  "C_Cpp_Runner.msvcSecureNoWarnings": false,
+  "C_Cpp.errorSquiggles": "disabled"
 }
