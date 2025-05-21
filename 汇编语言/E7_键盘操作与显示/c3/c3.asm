@@ -2,15 +2,11 @@ DATA SEGMENT
     DATAX DB 6      ; 带符号字节数据，负数
     DATAY DB -1      ; 带符号字节数据，正数
     RESULT DB 0
-    BUF DB 5 DUP(0)
+    BUF DB 5 DUP(?)
 DATA ENDS
 
-STACK SEGMENT
-    DB 100H DUP(?)
-STACK ENDS
-
 CSEG SEGMENT
-    ASSUME CS:CSEG,DS:DATA,SS:STACK
+    ASSUME CS:CSEG,DS:DATA
     ORG 100H
 START:
       MOV AX,DATA
@@ -65,14 +61,14 @@ SHOW_RESULT:
     MOV AL, RESULT
     CBW                 ; 符号扩展到AX
     CMP AL, 0           ; 只比较 AL
-    JGE SHOW_POS
+    JGE SHOW
     MOV DL, '-'
     MOV AH, 2
     INT 21H
     NEG AL              ; 只对 AL 取绝对值
-    MOV AH,0
+    CBW
 
-SHOW_POS:
+SHOW:
     MOV DI,0            ; DI为BUF索引
     MOV BX,10
 
