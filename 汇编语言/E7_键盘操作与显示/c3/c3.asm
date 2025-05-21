@@ -60,13 +60,12 @@ DIV_OP:
 SHOW_RESULT:
     MOV AL, RESULT
     CBW                 ; 符号扩展到AX
-    CMP AL, 0           ; 只比较 AL
+    CMP AX, 0           ; 只比较 AL
     JGE SHOW
     MOV DL, '-'
     MOV AH, 2
     INT 21H
-    NEG AL              ; 只对 AL 取绝对值
-    CBW
+    NEG AX             
 
 SHOW:
     MOV DI,0            ; DI为BUF索引
