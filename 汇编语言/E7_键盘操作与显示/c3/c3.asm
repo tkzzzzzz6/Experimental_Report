@@ -76,6 +76,7 @@ SHOW_RESULT:
 SHOW_POS:
     MOV DI,0            ; DI为BUF索引
     MOV BX,10
+    NEG AL
 CONV_LOOP:
     MOV DX,0
     DIV BX
