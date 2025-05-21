@@ -1,5 +1,5 @@
 DATA SEGMENT
-    DATAX DB 6      ; 带符号字节数据，负数
+    DATAX DB 5      ; 带符号字节数据，负数
     DATAY DB -1      ; 带符号字节数据，正数
     RESULT DB 0
     BUF DB 5 DUP(?)

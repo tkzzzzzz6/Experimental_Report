@@ -1,0 +1,160 @@
+.MODEL SMALL
+.STACK 100H
+
+.DATA
+DATAX DB ?
+DATAY DB ?
+OPERATOR DB ?
+RESULT DW ?
+PROMPT1 DB 'Enter operator (+, -, *, /): $'
+PROMPT2 DB 'Result: $'
+ERROR_MSG DB 'Division by zero! $'
+INVALID_MSG DB 'Invalid operator! $'
+
+.CODE
+MAIN PROC
+    MOV AX, @DATA
+    MOV DS, AX
+
+    ; 假设DATAX和DATAY已经被赋值
+    MOV DATAX, 6   ; 示例值
+    MOV DATAY, -1   ; 示例值
+
+INPUT_OPERATOR:
+    ; 显示提示信息
+    LEA DX, PROMPT1
+    MOV AH, 09H
+    INT 21H
+
+    ; 从键盘读取操作符
+    MOV AH, 01H
+    INT 21H
+    MOV OPERATOR, AL
+
+    ; 检查操作符是否有效
+    CMP AL, '+'
+    JE VALID_OP
+    CMP AL, '-'
+    JE VALID_OP
+    CMP AL, '*'
+    JE VALID_OP
+    CMP AL, '/'
+    JE VALID_OP
+
+    ; 无效操作符处理
+    CALL NEWLINE
+    LEA DX, INVALID_MSG
+    MOV AH, 09H
+    INT 21H
+    CALL NEWLINE
+    JMP INPUT_OPERATOR
+
+VALID_OP:
+    CALL NEWLINE
+
+    ; 根据操作符执行相应运算
+    CMP OPERATOR, '+'
+    JE ADDITION
+    CMP OPERATOR, '-'
+    JE SUBTRACTION
+    CMP OPERATOR, '*'
+    JE MULTIPLICATION
+    CMP OPERATOR, '/'
+    JE DIVISION
+
+ADDITION:
+    MOV AL, DATAX
+    MOV BL, DATAY
+    ADD AL, BL
+    MOV RESULT, AX
+    JMP DISPLAY_RESULT
+
+SUBTRACTION:
+    MOV AL, DATAX
+    MOV BL, DATAY
+    SUB AL, BL
+    MOV RESULT, AX
+    JMP DISPLAY_RESULT
+
+MULTIPLICATION:
+    MOV AL, DATAX
+    MOV BL, DATAY
+    IMUL BL       ; 有符号乘法
+    MOV RESULT, AX
+    JMP DISPLAY_RESULT
+
+DIVISION:
+    MOV BL, DATAY
+    CMP BL, 0
+    JE DIV_BY_ZERO
+
+    MOV AL, DATAX
+    CBW           ; 扩展为16位
+    IDIV BL       ; 有符号除法
+    MOV RESULT, AX
+    JMP DISPLAY_RESULT
+
+DIV_BY_ZERO:
+    LEA DX, ERROR_MSG
+    MOV AH, 09H
+    INT 21H
+    JMP EXIT_PROGRAM
+
+DISPLAY_RESULT:
+    CALL NEWLINE
+    LEA DX, PROMPT2
+    MOV AH, 09H
+    INT 21H
+
+    ; 显示结果
+    MOV AX, RESULT
+    CALL PRINT_NUMBER
+
+EXIT_PROGRAM:
+    MOV AH, 4CH
+    INT 21H
+
+; 换行子程序
+NEWLINE PROC
+    MOV AH, 02H
+    MOV DL, 0DH
+    INT 21H
+    MOV DL, 0AH
+    INT 21H
+    RET
+NEWLINE ENDP
+
+; 打印带符号数字子程序
+PRINT_NUMBER PROC
+    CMP AX, 0
+    JGE PRINT_POSITIVE
+
+    ; 处理负数
+    MOV DL, '-'
+    MOV AH, 02H
+    INT 21H
+    NEG AX
+
+PRINT_POSITIVE:
+    MOV CX, 0
+    MOV BX, 10
+
+CONVERT_LOOP:
+    MOV DX, 0
+    DIV BX
+    PUSH DX
+    INC CX
+    CMP AX, 0
+    JNE CONVERT_LOOP
+
+PRINT_LOOP:
+    POP DX
+    ADD DL, '0'
+    MOV AH, 02H
+    INT 21H
+    LOOP PRINT_LOOP
+    RET
+PRINT_NUMBER ENDP
+
+MAIN ENDP
+END MAIN
