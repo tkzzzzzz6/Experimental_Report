@@ -1,5 +1,4 @@
 DATA SEGMENT
-    ORG 0100H
     DATAX DB 6      ; 带符号字节数据，负数
     DATAY DB -1      ; 带符号字节数据，正数
     RESULT DB 0
@@ -7,7 +6,6 @@ DATA SEGMENT
 DATA ENDS
 
 STACK SEGMENT
-    ORG 0000H
     DB 100H DUP(?)
 STACK ENDS
 
@@ -73,10 +71,11 @@ SHOW_RESULT:
     INT 21H
     NEG AL              ; 只对 AL 取绝对值
     MOV AH,0
+
 SHOW_POS:
     MOV DI,0            ; DI为BUF索引
     MOV BX,10
-    NEG AL
+
 CONV_LOOP:
     MOV DX,0
     DIV BX
@@ -85,6 +84,7 @@ CONV_LOOP:
     INC DI
     CMP AX,0
     JNZ CONV_LOOP
+
 PRINT_LOOP:
     DEC DI
     MOV DL,BUF[DI]
