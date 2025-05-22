@@ -1,13 +1,12 @@
 DATA SEGMENT
-    DATAX DB 5      ; 带符号字节数据，负数
-    DATAY DB -1      ; 带符号字节数据，正数
+    DATAX DB 6      ; 带符号字节数据，负数
+    DATAY DB -2      ; 带符号字节数据，正数
     RESULT DB 0
-    BUF DB 5 DUP(?)
+    BUF DB 4 DUP(?)
 DATA ENDS
 
 CSEG SEGMENT
     ASSUME CS:CSEG,DS:DATA
-    ORG 100H
 START:
       MOV AX,DATA
       MOV DS,AX
@@ -59,33 +58,36 @@ DIV_OP:
 ;难点在打印,将每次除以10,把余数入栈,然后出栈,打印
 SHOW_RESULT:
     MOV AL, RESULT
-    CBW                 ; 符号扩展到AX
-    CMP AX, 0           ; 只比较 AL
+    CBW
+    CMP AL, 0
     JGE SHOW
+    PUSH AX           ; 保存原始AL
     MOV DL, '-'
     MOV AH, 2
     INT 21H
-    NEG AX             
+    POP AX            ; 恢复AL
+    NEG AL
+    CBW
 
 SHOW:
-    MOV DI,0            ; DI为BUF索引
+    MOV SI,0            ; SI为BUF索引
     MOV BX,10
 
 CONV_LOOP:
     MOV DX,0
     DIV BX
     ADD DL,'0'
-    MOV BUF[DI],DL
-    INC DI
+    MOV BUF[SI],DL
+    INC SI
     CMP AX,0
     JNZ CONV_LOOP
 
 PRINT_LOOP:
-    DEC DI
-    MOV DL,BUF[DI]
+    DEC SI
+    MOV DL,BUF[SI]
     MOV AH,2
     INT 21H
-    CMP DI,0
+    CMP SI,0
     JNZ PRINT_LOOP
     JMP EXIT
 
