@@ -3,6 +3,40 @@
   "configurations": [
     {
       "type": "java",
+      "name": "APlusB",
+      "request": "launch",
+      "mainClass": "APlusB"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.tk.Main",
+      "projectName": "sj04_2"
+    },
+    {
+      "type": "java",
+      "name": "Test",
+      "request": "launch",
+      "mainClass": "com.tk.Test",
+      "projectName": "sj04_1"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "com.tk.Main",
+      "projectName": "sj04_1"
+    },
+    {
+      "type": "java",
+      "name": "Main",
+      "request": "launch",
+      "mainClass": "test4.Main",
+      "projectName": "test"
+    },
+    {
+      "type": "java",
       "name": "Main",
       "request": "launch",
       "mainClass": "com.example.Main",
