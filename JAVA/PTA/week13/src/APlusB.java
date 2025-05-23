@@ -4,8 +4,8 @@ public class APlusB {
   public static void main(String[] args) {
     try {
       // 读取父目录下的a.txt和b.txt
-      BufferedReader readerA = new BufferedReader(new FileReader("../a.txt"));
-      BufferedReader readerB = new BufferedReader(new FileReader("../b.txt"));
+      BufferedReader readerA = new BufferedReader(new FileReader("./a.txt"));
+      BufferedReader readerB = new BufferedReader(new FileReader("./b.txt"));
       int a = Integer.parseInt(readerA.readLine().trim());
       int b = Integer.parseInt(readerB.readLine().trim());
       readerA.close();

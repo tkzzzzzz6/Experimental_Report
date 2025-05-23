@@ -8,7 +8,8 @@
     "xtr1common": "cpp",
     "ostream": "cpp",
     "text_encoding": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "iostream": "cpp"
   },
   "masmtasm.ASM.emulator": "msdos player",
   "masmtasm.dosbox.run": "exit",
